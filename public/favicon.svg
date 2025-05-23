@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Arka plan -->
+  <rect width="32" height="32" rx="6" fill="#1E293B"/>
+  
+  <!-- Laptop ekranı -->
+  <rect x="6" y="8" width="20" height="14" rx="2" fill="#0F172A"/>
+  
+  <!-- Kod satırları -->
+  <rect x="9" y="11" width="14" height="2" rx="1" fill="#38BDF8"/>
+  <rect x="9" y="15" width="10" height="2" rx="1" fill="#38BDF8"/>
+  <rect x="9" y="19" width="12" height="2" rx="1" fill="#38BDF8"/>
+  
+  <!-- Laptop alt kısmı -->
+  <path d="M8 22H24L22 26H10L8 22Z" fill="#0F172A"/>
+</svg> 
