@@ -1,17 +1,6 @@
-import React, { useState } from "react";
-import EducationLoader from "@/components/ui/EducationLoader";
-import {
-  Star,
-  Award,
-  Calendar,
-  BookOpen,
-  GraduationCap,
-  Trophy,
-  // Scale,
-} from "lucide-react";
 import { motion } from "framer-motion";
-import { SiAsana, SiCodecademy } from "react-icons/si";
 import { FaLaptopCode } from "react-icons/fa";
+import { useState } from "react";
 
 const ExperienceSection = () => {
   const [hoveredIndex, setHoveredIndex] = useState(null);
@@ -97,7 +86,7 @@ const ExperienceSection = () => {
   };
 
   return (
-    <section className="min-h-screen relative overflow-hidden py-40 bg-[#04081A]">
+    <section className="min-h-screen relative overflow-hidden py-32 bg-[#04081A]">
       {/* Grid Background */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-grid-white/[0.05] bg-[length:50px_50px]" />
@@ -166,26 +155,24 @@ const ExperienceSection = () => {
                     {ex.company}
                   </p>
                   <p className="text-gray-400 flex items-center gap-2">
-                    <Calendar className="w-4 h-4" />
                     {ex.year}
                   </p>
                 </div>
 
-                <p className="text-gray-300 text-sm italic border-l-2 border-teal-500 pl-3 text-justify">
-                  {Array.isArray(ex.description) ? (
-                    <ul className="list-disc pl-5 space-y-1">
-                      {ex.description.map((item, idx) => (
-                        <li key={idx}>{item}</li>
-                      ))}
-                    </ul>
-                  ) : (
-                    ex.description
-                  )}
-                </p>
+                {Array.isArray(ex.description) ? (
+                  <ul className="text-gray-300 text-sm italic border-l-2 border-teal-500 pl-3 text-justify list-disc pl-5 space-y-1">
+                    {ex.description.map((item, idx) => (
+                      <li key={idx}>{item}</li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p className="text-gray-300 text-sm italic border-l-2 border-teal-500 pl-3 text-justify">
+                    {ex.description}
+                  </p>
+                )}
 
                 <div className="space-y-3">
                   <h4 className="text-sm font-semibold text-white flex items-center gap-2">
-                    <Trophy className="w-4 h-4 text-yellow-500" />
                     Key Skills Acquired
                   </h4>
                   

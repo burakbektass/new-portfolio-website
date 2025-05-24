@@ -384,10 +384,8 @@ export default function Hero() {
           </div>
         </section>
 
-        
-
-        {/* Scroll indicator */}
-        <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-2">
+        {/* Scroll indicator - Artık section'ın içinde, kod bloğunun altında */}
+        <div className="flex justify-center mt-0 flex-col items-center gap-2">
           <button 
             onClick={scrollToAbout}
             className="flex items-center gap-2 text-gray-400 hover:text-blue-400 transition-colors duration-300 cursor-pointer"

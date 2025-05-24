@@ -2,6 +2,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { useTheme } from "next-themes";
 import { Cloud, fetchSimpleIcons, renderSimpleIcon } from "react-icon-cloud";
+import PropTypes from "prop-types";
 
 export const cloudProps = {
   containerProps: {
@@ -10,7 +11,7 @@ export const cloudProps = {
       justifyContent: "center",
       alignItems: "center",
       width: "100%",
-      paddingTop: 40,
+      paddingTop: 30,
     },
   },
   options: {
@@ -30,7 +31,7 @@ export const cloudProps = {
   },
 };
 
-export const renderCustomIcon = (icon, theme, imageArray) => {
+export const renderCustomIcon = (icon, theme) => {
   const bgHex = theme === "light" ? "#f3f2ef" : "#080510";
   const fallbackHex = theme === "light" ? "#6e6e73" : "#ffffff";
   const minContrastRatio = theme === "dark" ? 2 : 1.2;
@@ -51,9 +52,7 @@ export const renderCustomIcon = (icon, theme, imageArray) => {
 };
 
 export default function IconCloud({
-  // Default to an empty array if not provided
   iconSlugs = [],
-
   imageArray,
 }) {
   const [data, setData] = useState(null);
@@ -92,3 +91,8 @@ export default function IconCloud({
     </Cloud>
   );
 }
+
+IconCloud.propTypes = {
+  iconSlugs: PropTypes.array,
+  imageArray: PropTypes.array,
+};

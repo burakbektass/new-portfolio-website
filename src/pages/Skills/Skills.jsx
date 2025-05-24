@@ -1,106 +1,16 @@
-import React from "react";
+import PropTypes from "prop-types";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import IconCloudDemo from "@/components/globe";
-import {
-  Code2,
-  Paintbrush,
-  Database,
-  Goal,
-  Cloud,
-  LaptopMinimalCheck,
-  FileJson,
-  Recycle,
-  Layers,
-  SquareMousePointer,
-} from "lucide-react";
-import {
-  FaReact,
-  FaNodeJs,
-  FaPython,
-  FaDocker,
-  FaGitAlt,
-  FaLinux,
-  FaFigma,
-  FaAws,
-  FaAngular,
-  FaJava,
-  FaMicrosoft,
-  FaFlask,
-  FaObjectGroup,
-  FaRegObjectGroup,
-} from "react-icons/fa";
-import {
-  SiNextdotjs,
-  SiTypescript,
-  SiTailwindcss,
-  SiPostgresql,
-  SiMongodb,
-  SiGraphql,
-  SiJest,
-  SiWebpack,
-  SiRedux,
-  SiFirebase,
-  SiVercel,
-  SiVite,
-  SiJavascript,
-  SiGithub,
-  SiDotnet,
-  SiCloudsmith,
-  SiFlask,
-  SiKubernetes,
-  SiSqlite,
-  SiHtml5,
-  SiCss3,
-  SiRedis,
-  SiSwagger,
-  SiJsonwebtokens,
-  SiAwslambda,
-  SiAmazondynamodb,
-  SiAmazonapigateway,
-  SiTerraform,
-  SiAmazonwebservices,
-  SiCloudflare,
-  SiCloudinary,
-  SiGit,
-  SiJira,
-  SiSlack,
-  SiPivotaltracker,
-  SiAsana,
-  SiScrumalliance,
-  SiSolid,
-  SiPostman,
-  SiPhp,
-  SiVuedotjs,
-  SiBootstrap,
-  SiMysql,
-} from "react-icons/si";
-import {
-  TbBrandAirtable,
-  TbBrandJavascript,
-  TbBrandReddit,
-  TbBrandSlack,
-  TbBrandVisualStudio,
-  TbBrandVscode,
-  TbBrandNextjs,
-} from "react-icons/tb";
-import { BsFileEarmarkCode, BsGrid1X2, BsMicrosoft } from "react-icons/bs";
-import { MdAnimation } from "react-icons/md";
-import {
-  FcCommandLine,
-  FcDataConfiguration,
-  FcDataSheet,
-  FcWorkflow,
-} from "react-icons/fc";
-import csharpIcon from "@/assets/images/csharp.svg";
-import mssql from "@/assets/images/mssql.svg";
-import slack from "@/assets/images/slack.svg";
+import { Code2, Database, Cloud, FileJson, SquareMousePointer } from "lucide-react";
+import { FaReact, FaPython, FaDocker, FaAngular } from "react-icons/fa";
+import { SiNextdotjs, SiTypescript, SiTailwindcss, SiMongodb, SiVercel, SiJavascript, SiGithub, SiHtml5, SiCss3, SiPostman, SiVuedotjs, SiBootstrap, SiMysql, SiAmazonwebservices, SiJsonwebtokens, SiGit } from "react-icons/si";
+import { BsGrid1X2 } from "react-icons/bs";
 import figma from "@/assets/images/figma.svg";
-import microsoft from "@/assets/images/microsoft.svg";
 import "./Skills.css";
 
 const SkillCard = ({ icon: Icon, title, skills, color }) => (
-  <Card className="group relative overflow-hidden bg-gray-900/80 border-gray-700 hover:scale-[1.02] transition-all duration-300 hover:shadow-xl hover:shadow-blue-500/20">
+  <Card className="group relative overflow-hidden bg-gray-900/80 border-gray-700 hover:scale-[1.02] transition-all duration-300 hover:shadow-xl hover:shadow-blue-500/20 h-full">
     <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[rgba(100,100,255,0.1)] to-transparent group-hover:via-[rgba(100,100,255,0.2)] animate-shimmer"></div>
     <CardContent className="p-6 relative z-10">
       <div className="flex items-center gap-4 mb-6">
@@ -130,6 +40,18 @@ const SkillCard = ({ icon: Icon, title, skills, color }) => (
     </CardContent>
   </Card>
 );
+
+SkillCard.propTypes = {
+  icon: PropTypes.elementType.isRequired,
+  title: PropTypes.string.isRequired,
+  skills: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      icon: PropTypes.node.isRequired,
+    })
+  ).isRequired,
+  color: PropTypes.string.isRequired,
+};
 
 const SkillsSection = () => {
   const skillCategories = [
@@ -303,34 +225,34 @@ const SkillsSection = () => {
     <section className="min-h-screen py-20 bg-[#04081A]">
       <div className="max-w-7xl mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-extrabold bg-gradient-to-r from-teal-400 to-blue-500 bg-clip-text text-transparent mb-4">
+          <h2 className="text-4xl md:text-5xl font-extrabold bg-gradient-to-r from-teal-400 to-blue-500 bg-clip-text text-transparent mb-4 mt-8">
             My Skills
           </h2>
           <p className="text-gray-300 max-w-xl mx-auto text-lg">
             Technologies and tools I use to build modern, scalable web applications.
           </p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 grid-rows-2 gap-x-8 gap-y-4 mt-16 items-stretch">
+        <div className="grid grid-cols-1 md:grid-cols-3 grid-rows-2 gap-x-8 gap-y-8 mt-16 items-stretch">
           {/* 1. Satır */}
-          <div className="max-w-xs md:max-w-sm lg:max-w-md mx-auto w-full">
+          <div className="max-w-xs md:max-w-sm lg:max-w-md mx-auto w-full min-h-[10rem] h-full">
             <SkillCard {...skillCategories[0]} />
           </div>
-          <div className="flex justify-center items-center max-w-xs md:max-w-sm lg:max-w-md mx-auto w-full">
-            <div className="w-80 h-80 md:w-[28rem] md:h-[28rem] mt-[-32px]">
+          <div className="flex justify-center items-start pt-0 max-w-xs md:max-w-sm lg:max-w-md mx-auto w-full min-h-[10rem]">
+            <div className="flex justify-center items-center md:w-[22rem] md:h-[22rem] mt-[-32px]">
               <IconCloudDemo />
             </div>
           </div>
-          <div className="max-w-xs md:max-w-sm lg:max-w-md mx-auto w-full">
+          <div className="max-w-xs md:max-w-sm lg:max-w-md mx-auto w-full min-h-[10rem] h-full">
             <SkillCard {...skillCategories[4]} />
           </div>
           {/* 2. Satır */}
-          <div className="max-w-xs md:max-w-sm lg:max-w-md mx-auto w-full">
+          <div className="max-w-xs md:max-w-sm lg:max-w-md mx-auto w-full min-h-[10rem] h-full">
             <SkillCard {...skillCategories[1]} />
           </div>
-          <div className="max-w-xs md:max-w-sm lg:max-w-md mx-auto w-full">
+          <div className="max-w-xs md:max-w-sm lg:max-w-md mx-auto w-full min-h-[10rem] h-full">
             <SkillCard {...skillCategories[2]} />
           </div>
-          <div className="max-w-xs md:max-w-sm lg:max-w-md mx-auto w-full">
+          <div className="max-w-xs md:max-w-sm lg:max-w-md mx-auto w-full min-h-[10rem] h-full">
             <SkillCard {...skillCategories[3]} />
           </div>
         </div>
