@@ -1,21 +1,17 @@
 import React from "react";
-import { Code2, Activity, Cpu, FileDown, Download, Scale, GraduationCap, BookOpen } from "lucide-react";
-import { SiAngular, SiDotnet, SiGoogle, SiPython, SiReact, SiScrumalliance } from "react-icons/si";
-import { FaGoogle, FaMicrosoft, FaSchool } from "react-icons/fa";
-import { TbAdCircle, TbCubeUnfolded } from "react-icons/tb";
-// import certificate from "@/assets/images/certificate.pdf";
-// import bahcesehirLogo from "@/assets/images/bahcesehir-university-logo.png";
-// import halideedipLogo from "@/assets/images/halideedip_logo.png";
-// import fenbilimleriLogo from "@/assets/images/fen_bilimleri_logo.jpg";
+import bahcesehirLogo from "@/assets/images/bahcesehir-university-logo.png";
+import halideedipLogo from "@/assets/images/halideedip_logo.png";
+import fenbilimleriLogo from "@/assets/images/fen_bilimleri_logo.jpg";
 
 const EducationCard = ({
   title,
   school,
   period,
   description,
-  logo
+  logo,
+  cardHeightClass = ""
 }) => (
-  <div className="group relative overflow-hidden transform hover:-translate-y-2 transition-all duration-300">
+  <div className={`group relative overflow-hidden transform hover:-translate-y-2 transition-all duration-300 ${cardHeightClass}`}>
     {/* Glass morphism effect */}
     <div className="absolute inset-0 backdrop-blur-lg bg-white/5 rounded-lg" />
 
@@ -23,28 +19,30 @@ const EducationCard = ({
     <div className="absolute -inset-[2px] bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500 rounded-lg opacity-0 group-hover:opacity-100 animate-gradient-xy transition-all duration-500" />
 
     <div className="relative bg-gray-900/90 rounded-lg p-8 h-full border border-gray-800/50 shadow-xl backdrop-blur-xl">
-      {/* Floating logo */}
-      <div className="relative mb-6 flex justify-between items-center">
-        <div className="absolute -inset-4 bg-gradient-to-r from-cyan-500 to-blue-500 opacity-25 rounded-full blur-xl group-hover:opacity-75 animate-pulse transition-all duration-800" />
+      {/* Title at the top */}
+      <div className="mb-3">
+        <span className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent block">{title}</span>
+      </div>
+      {/* Logo and School Name in a row below title */}
+      <div className="flex flex-row items-center gap-4 mb-6">
         <div className="w-10 h-10 object-contain relative z-10">
-          {/* Placeholder for the logo */}
+          {logo && <img src={logo} alt="school logo" className="w-10 h-10 object-contain" />}
         </div>
+        <span className="font-semibold text-blue-400 text-lg">{school}</span>
       </div>
 
       {/* Content with improved typography */}
       <div className="space-y-3">
-        <h3 className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
-          {title}
-        </h3>
         <div className="flex justify-between items-center text-gray-300">
-          <span className="font-semibold text-blue-400">{school}</span>
           <span className="text-sm font-mono bg-blue-500/10 px-3 py-1 rounded-full whitespace-nowrap">
             {period}
           </span>
         </div>
-        <p className="text-gray-300 border-l-4 border-blue-500/50 pl-4 mt-4 leading-relaxed text-justify">
-          {description}
-        </p>
+        {description && (
+          <p className="text-gray-300 border-l-4 border-blue-500/50 pl-4 mt-4 leading-relaxed text-justify">
+            {description}
+          </p>
+        )}
       </div>
 
       {/* Decorative elements */}
@@ -63,15 +61,15 @@ const EducationCard = ({
 const EducationSection = () => {
   const educations = [
     {
-      // logo: bahcesehirLogo,
-      title: "BSc, Faculty of Natural Science and Engineering",
+      logo: bahcesehirLogo,
+      title: "BSc, Software Engineering",
       school: "Bahcesehir University",
       period: "2018–2022",
       description:
         "Graduated with Honour Roll. GPA: 3.40 / 4.00",
     },
     {
-      // logo: bahcesehirLogo,
+      logo: bahcesehirLogo,
       title: "Prep School",
       school: "Bahcesehir University",
       period: "2017–2018",
@@ -79,7 +77,7 @@ const EducationSection = () => {
         "Completed English preparatory program.",
     },
     {
-      // logo: fenbilimleriLogo,
+      logo: fenbilimleriLogo,
       title: "High School",
       school: "Fen Bilimleri High School",
       period: "2016–2017",
@@ -87,7 +85,7 @@ const EducationSection = () => {
         "Science-focused high school education.",
     },
     {
-      // logo: halideedipLogo,
+      logo: halideedipLogo,
       title: "High School",
       school: "Halide Edip Adıvar Anatolian High School",
       period: "2013–2016",
@@ -134,9 +132,11 @@ const EducationSection = () => {
           </div>
 
           {/* Education grid with improved layout */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto items-stretch">
             {educations.map((exp, index) => (
-              <EducationCard key={index} {...exp} />
+              <div key={index} className="max-w-[21rem] w-full mx-auto h-full">
+                <EducationCard {...exp} cardHeightClass="h-full" />
+              </div>
             ))}
           </div>
         </div>

@@ -10,7 +10,7 @@ import figma from "@/assets/images/figma.svg";
 import "./Skills.css";
 
 const SkillCard = ({ icon: Icon, title, skills, color }) => (
-  <Card className="group relative overflow-hidden bg-gray-900/80 border-gray-700 hover:scale-[1.02] transition-all duration-300 hover:shadow-xl hover:shadow-blue-500/20 h-full">
+  <Card className="group relative overflow-hidden bg-gray-900/80 border-gray-700 hover:scale-[1.02] transition-all duration-300 hover:shadow-xl hover:shadow-blue-500/20 h-[100%]">
     <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[rgba(100,100,255,0.1)] to-transparent group-hover:via-[rgba(100,100,255,0.2)] animate-shimmer"></div>
     <CardContent className="p-6 relative z-10">
       <div className="flex items-center gap-4 mb-6">
@@ -23,12 +23,12 @@ const SkillCard = ({ icon: Icon, title, skills, color }) => (
           {title}
         </h3>
       </div>
-      <div className="flex flex-wrap gap-2">
+      <div className="flex flex-wrap gap-4">
         {skills.map((skill, index) => (
           <Badge
             key={index}
             variant="outline"
-            className="group/badge relative bg-gray-800/50 hover:bg-gray-700/80 text-gray-100 border-gray-600 flex items-center gap-2 py-2 px-3 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-blue-500/20"
+            className="group/badge relative bg-gray-800/50 hover:bg-gray-700/80 text-gray-100 border-gray-600 flex items-center gap-3 py-2 px-3 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-blue-500/20"
           >
             <span className="transform group-hover/badge:scale-110 transition-transform duration-300">
               {skill.icon}
@@ -225,20 +225,20 @@ const SkillsSection = () => {
     <section className="min-h-screen py-20 bg-[#04081A]">
       <div className="max-w-7xl mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-extrabold bg-gradient-to-r from-teal-400 to-blue-500 bg-clip-text text-transparent mb-4 mt-8">
+          <h2 className="text-4xl md:text-5xl font-extrabold bg-gradient-to-r from-teal-400 to-blue-500 bg-clip-text text-transparent mb-4 mt-8 p-2">
             My Skills
           </h2>
           <p className="text-gray-300 max-w-xl mx-auto text-lg">
             Technologies and tools I use to build modern, scalable web applications.
           </p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 grid-rows-2 gap-x-8 gap-y-8 mt-16 items-stretch">
+        <div className="grid grid-cols-1 md:grid-cols-3 grid-rows-2 gap-x-8 gap-y-8 mt-16 items-start">
           {/* 1. Satır */}
           <div className="max-w-xs md:max-w-sm lg:max-w-md mx-auto w-full min-h-[10rem] h-full">
             <SkillCard {...skillCategories[0]} />
           </div>
-          <div className="flex justify-center items-start pt-0 max-w-xs md:max-w-sm lg:max-w-md mx-auto w-full min-h-[10rem]">
-            <div className="flex justify-center items-center md:w-[22rem] md:h-[22rem] mt-[-32px]">
+          <div className="flex justify-center items-start pt-0 max-w-xs md:max-w-sm lg:max-w-md mx-auto w-full min-h-[10rem] h-full">
+            <div className="flex justify-center items-center md:w-[19rem] md:h-[17rem] mt-[-32px]">
               <IconCloudDemo />
             </div>
           </div>
@@ -246,13 +246,13 @@ const SkillsSection = () => {
             <SkillCard {...skillCategories[4]} />
           </div>
           {/* 2. Satır */}
-          <div className="max-w-xs md:max-w-sm lg:max-w-md mx-auto w-full min-h-[10rem] h-full">
+          <div className="max-w-xs md:max-w-sm lg:max-w-md mx-auto w-full min-h-[6rem] md:min-h-[3rem] h-[65%]">
             <SkillCard {...skillCategories[1]} />
           </div>
-          <div className="max-w-xs md:max-w-sm lg:max-w-md mx-auto w-full min-h-[10rem] h-full">
+          <div className="max-w-xs md:max-w-sm lg:max-w-md mx-auto w-full min-h-[6rem] md:min-h-[7rem] h-[65%]">
             <SkillCard {...skillCategories[2]} />
           </div>
-          <div className="max-w-xs md:max-w-sm lg:max-w-md mx-auto w-full min-h-[10rem] h-full">
+          <div className="max-w-xs md:max-w-sm lg:max-w-md mx-auto w-full min-h-[6rem] md:min-h-[7rem] h-[65%]">
             <SkillCard {...skillCategories[3]} />
           </div>
         </div>

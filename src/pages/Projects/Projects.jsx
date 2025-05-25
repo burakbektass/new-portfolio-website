@@ -6,32 +6,104 @@ import PropTypes from "prop-types";
 
 const projects = [
   {
-    title: "",
-    description: "",
-    src1: "",
-    src2: "",
-    color: "",
-    githubLink: "",
-    liveLink: "",
+    title: "BudgetFlow - Personal Finance Tracker",
+    description:
+      "Comprehensive personal finance application built with Next.js 14, featuring multi-currency support, interactive data visualization, and category-based budgeting. Includes dark/light theme, multi-language support (EN/TR), and responsive design for optimal user experience.",
+    src1: "", // You will add the image later
+    src2: "", // You will add the image later
+    color: "#e57373",
+    githubLink: "https://github.com/burakbektass/expense-tracker",
+    liveLink: "https://expense-tracker-phi-amber.vercel.app/dashboard",
+    tags: ["Next.js 14", "TypeScript", "TailwindCSS", "Recharts", "Context API"],
   },
   {
-    title: "",
-    description: "",
-    src1: "",
-    src2: "",
-    color: "",
-    githubLink: "",
-    liveLink: "",
+    title: "Clickable Covid-19-statistic Map",
+    description:
+      "Interactive world map visualization showcasing real-time COVID-19 statistics with detailed country-specific data, built with modern web technologies for optimal performance and user experience.",
+    src1: "", // You will add the image later
+    src2: "", // You will add the image later
+    color: "#e57373",
+    githubLink: "https://github.com/burakbektass/covid-19-statistic",
+    liveLink: "https://covid-19-statistic-aofrrq47g-burakbektass-projects.vercel.app/",
+    tags: ["React", "TypeScript", "REST API"],
   },
   {
-    title: "",
-    description: "",
-    src1: "",
-    src2: "",
-    color: "",
-    githubLink: "",
-    liveLink: "",
-  }
+    title: "Modern Weather App",
+    description:
+      "A sleek and responsive weather application featuring real-time weather data, hourly forecasts, and dynamic UI that adapts to current weather conditions. Built with Next.js 14 and includes features like temperature unit conversion, wind speed units, and smart error handling.",
+    src1: "", // You will add the image later
+    src2: "", // You will add the image later
+    color: "#e57373",
+    githubLink: "https://github.com/burakbektass/weather-app",
+    liveLink: "https://weather-app-murex-omega-71.vercel.app/",
+    tags: ["Next.js 14", "TypeScript", "Redux Toolkit", "TanStack Query", "Tailwind CSS"],
+  },
+  {
+    title: "PawTime – Veterinary Appointment System",
+    description:
+      "Modern veterinary appointment scheduling system built with React and Tailwind CSS, featuring responsive design, easy appointment booking, and medical history tracking. A user-friendly interface for pet owners to manage their veterinary visits.",
+    src1: "", // You will add the image later
+    src2: "", // You will add the image later
+    color: "#e57373",
+    githubLink: "https://github.com/burakbektass/PawTime",
+    liveLink: "https://paw-time.vercel.app/",
+    tags: ["React", "Tailwind CSS", "React Icons"],
+  },
+  {
+    title: "React Budget App",
+    description:
+      "Personal finance tracker with expense categorization, budget planning, and visual spending analytics, built using React Router for seamless navigation.",
+    src1: "", // You will add the image later
+    src2: "", // You will add the image later
+    color: "#e57373",
+    githubLink: "https://github.com/burakbektass/Budget-application-with-React",
+    liveLink: "https://budget-application-with-react.vercel.app/",
+    tags: ["React", "React Router", "SASS"],
+  },
+  {
+    title: "Three-card Monte game with VueJs",
+    description:
+      "Interactive card game built with Vue.js, featuring smooth animations, score tracking, and multiple difficulty levels. A modern take on the classic Three-card Monte game.",
+    src1: "", // You will add the image later
+    src2: "", // You will add the image later
+    color: "#e57373",
+    githubLink: "https://github.com/burakbektass/poker",
+    liveLink: "https://poker-three-psi.vercel.app/",
+    tags: ["Vue.js", "JavaScript", "CSS"],
+  },
+  {
+    title: "React Movie App",
+    description:
+      "Feature-rich movie discovery platform integrating with TMDB API, offering advanced search, filtering, and personalized watchlists with responsive design and TypeScript type safety.",
+    src1: "", // You will add the image later
+    src2: "", // You will add the image later
+    color: "#e57373",
+    githubLink: "https://github.com/burakbektass/Movie-react-app",
+    liveLink: "", // Add your live link if available
+    tags: ["React", "TypeScript", "SCSS"],
+  },
+  {
+    title: "Company Valuation Template",
+    description:
+      "Comprehensive financial analysis tool that calculates company valuations using multiple methods including DCF, Residual Income, and Enterprise Value, featuring interactive charts and detailed reporting.",
+    src1: "", // You will add the image later
+    src2: "", // You will add the image later
+    color: "#e57373",
+    githubLink: "https://github.com/burakbektass/Company-Valuation-Template-Project",
+    liveLink: "", // Add your live link if available
+    tags: ["React", "Node.js", "Financial APIs", "Chart.js"],
+  },
+  {
+    title: "Diabetes Prediction",
+    description:
+      "Machine learning application that predicts diabetes risk using demographic and health metrics, achieving 85% accuracy through advanced data analysis and feature engineering techniques.",
+    src1: "", // You will add the image later
+    src2: "", // You will add the image later
+    color: "#e57373",
+    githubLink: "https://github.com/burakbektass/Diabetes-Prediction-Data-Science-Project-Project",
+    liveLink: "", // No live link
+    tags: ["Python", "Pandas", "Scikit-learn", "Matplotlib"],
+  },
 ];
 
 export default function Projects() {
@@ -106,6 +178,7 @@ export default function Projects() {
                 targetScale={targetScale}
                 githubLink={project.githubLink}
                 liveLink={project.liveLink}
+                tags={project.tags}
               />
             );
           })}
@@ -127,6 +200,7 @@ function Card({
   targetScale,
   githubLink,
   liveLink,
+  tags = [],
 }) {
   const container = useRef(null);
   const scale = useTransform(progress, range, [1, targetScale]);
@@ -198,9 +272,25 @@ function Card({
               <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-white mb-2 md:mb-4">
                 {title}
               </h2>
-              <p className="text-sm md:text-base text-gray-400 leading-relaxed line-clamp-none max-w-md">
+              <p className="text-sm md:text-base text-gray-400 leading-relaxed line-clamp-none max-w-md mb-4">
                 {description}
               </p>
+              {/* Technologies badges */}
+              {tags && tags.length > 0 && (
+                <div className="mb-4">
+                  <div className="text-xs font-semibold text-gray-400 mb-2">Technologies</div>
+                  <div className="flex flex-wrap gap-2">
+                    {tags.map((tag, idx) => (
+                      <span
+                        key={idx}
+                        className="bg-pink-200/20 text-pink-400 border border-pink-300/30 px-3 py-1 rounded-lg text-xs font-medium shadow-sm"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
 
             <div className="mt-4 md:mt-auto pt-4">
@@ -209,12 +299,14 @@ function Card({
               <div className="flex items-center gap-4">
                 {/* GitHub Link */}
                 <motion.a
-                  href={githubLink}
+                  href={githubLink || undefined}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex items-center gap-2"
-                  whileHover={{ y: -3 }}
+                  className={`group flex items-center gap-2 ${!githubLink ? 'pointer-events-none opacity-50' : ''}`}
+                  whileHover={githubLink ? { y: -3 } : {}}
                   transition={{ type: "spring", stiffness: 400 }}
+                  tabIndex={!githubLink ? -1 : 0}
+                  aria-disabled={!githubLink}
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -239,12 +331,14 @@ function Card({
 
                 {/* Live Link */}
                 <motion.a
-                  href={liveLink}
+                  href={liveLink || undefined}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex items-center gap-2"
-                  whileHover={{ y: -3 }}
+                  className={`group flex items-center gap-2 ${!liveLink ? 'pointer-events-none opacity-50' : ''}`}
+                  whileHover={liveLink ? { y: -3 } : {}}
                   transition={{ type: "spring", stiffness: 400 }}
+                  tabIndex={!liveLink ? -1 : 0}
+                  aria-disabled={!liveLink}
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -288,5 +382,6 @@ Card.propTypes = {
   targetScale: PropTypes.number.isRequired,
   githubLink: PropTypes.string.isRequired,
   liveLink: PropTypes.string.isRequired,
+  tags: PropTypes.array,
 };
 
