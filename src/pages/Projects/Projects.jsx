@@ -1,8 +1,6 @@
-import { ReactLenis } from "lenis/react";
-import { useTransform, motion, useScroll } from "framer-motion";
-import { useRef, useEffect } from "react";
+import { motion } from "framer-motion";
+import { useRef } from "react";
 import PropTypes from "prop-types";
-
 
 const projects = [
   {
@@ -108,83 +106,33 @@ const projects = [
 
 export default function Projects() {
   const container = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: container,
-    offset: ["start start", "end end"],
-  });
-
-  useEffect(() => {
-    // Add specific styles for 1366x768 resolution
-    const style = document.createElement("style");
-    style.textContent = `
-      @media screen and (width: 1366px) and (height: 768px),
-             screen and (width: 1367px) and (height: 768px),
-             screen and (width: 1368px) and (height: 769px) {
-        .project-card {
-          scale: 0.85;
-          margin-top: -5vh;
-        }
-        .project-container {
-          height: 90vh;
-        }
-      }
-    `;
-    document.head.appendChild(style);
-
-    // Resolution check function
-    const checkResolution = () => {
-      const isTargetResolution =
-        window.innerWidth >= 1360 &&
-        window.innerWidth <= 1370 &&
-        window.innerHeight >= 760 &&
-        window.innerHeight <= 775;
-
-      if (isTargetResolution) {
-        document.documentElement.style.setProperty("--project-scale", "0.85");
-        document.documentElement.style.setProperty("--project-margin", "-5vh");
-      } else {
-        document.documentElement.style.setProperty("--project-scale", "1");
-        document.documentElement.style.setProperty("--project-margin", "0");
-      }
-    };
-
-    checkResolution();
-    window.addEventListener("resize", checkResolution);
-
-    return () => {
-      document.head.removeChild(style);
-      window.removeEventListener("resize", checkResolution);
-    };
-  }, []);
 
   return (
-    <ReactLenis root>
-      <main className="bg-black" ref={container}>
-        <section className="text-white w-full bg-slate-950">
-          {projects.map((project, i) => {
-            const targetScale = 1 - (projects.length - i) * 0.05;
-            return (
+    <main className="bg-black" ref={container}>
+      <section className="text-white w-full bg-slate-950 py-20 md:py-32">
+        {projects.map((project, i) => {
+          return (
+            <div key={`p_${i}`} className="relative group">
               <Card
-                key={`p_${i}`}
                 i={i}
-                url={project.link}
+                title={project.title}
+                description={project.description}
                 src1={project.src1}
                 src2={project.src2}
-                title={project.title}
                 color={project.color}
-                description={project.description}
-                progress={scrollYProgress}
-                range={[i * 0.25, 1]}
-                targetScale={targetScale}
                 githubLink={project.githubLink}
                 liveLink={project.liveLink}
                 tags={project.tags}
               />
-            );
-          })}
-        </section>
-      </main>
-    </ReactLenis>
+              {/* Subtle glow effect */}
+              {i < projects.length - 1 && (
+                <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-[95%] h-1 bg-gradient-to-r from-transparent via-blue-500/20 to-transparent blur-sm"></div>
+              )}
+            </div>
+          );
+        })}
+      </section>
+    </main>
   );
 }
 
@@ -195,63 +143,59 @@ function Card({
   src1,
   src2,
   color,
-  progress,
-  range,
-  targetScale,
   githubLink,
   liveLink,
   tags = [],
 }) {
-  const container = useRef(null);
-  const scale = useTransform(progress, range, [1, targetScale]);
-
   return (
-    <div
-      ref={container}
-      className="h-screen flex items-center justify-center sticky top-10  project-container  "
+    <motion.div
+      initial={{ 
+        opacity: 0, 
+        x: i % 2 === 0 ? 200 : -200, 
+        scale: 0.85 
+      }}
+      whileInView={{ 
+        opacity: 1, 
+        x: 0, 
+        scale: 1 
+      }}
+      exit={{ 
+        opacity: 0,
+        scale: 0.85,
+        transition: { duration: 0.6 }
+      }}
+      viewport={{ 
+        amount: 0.1,
+        margin: "0px 0px -200px 0px"
+      }}
+      transition={{ 
+        duration: 1.2, 
+        delay: i * 0.08, 
+        type: "spring", 
+        stiffness: 35,
+        damping: 10
+      }}
+      className="w-full max-w-6xl mx-auto mb-14"
+      whileHover={{ scale: 1.025, boxShadow: `0 8px 32px 0 ${color}33` }}
     >
-      <motion.div
-        style={{
-          scale,
-          top: `calc(-5vh + ${i * 50}px)`,
-          transform: `scale(var(--project-scale, 1))`,
-          marginTop: "var(--project-margin, 0)",
-        }}
-        className="relative -top-[25%] h-auto w-[90%] md:w-[85%] lg:w-[75%] xl:w-[75%] origin-top project-card"
-        whileHover={{
-          y: -8,
-          transition: { duration: 0.3 },
-        }}
-      >
-        
+      <div className="h-auto w-full origin-top project-card">
         {/* Modern split card design */}
-        <div className="w-full flex flex-col md:flex-row bg-zinc-900 rounded-2xl overflow-hidden shadow-2xl border border-blue-950 border-2 ">
+        <div className="w-full flex flex-col md:flex-row bg-zinc-900 rounded-2xl overflow-hidden shadow-2xl border border-blue-950 border-2">
           {/* Image section - full width on mobile, 45% on desktop */}
           <div className="w-full md:w-[45%] h-[250px] md:h-[400px] lg:h-[500px] relative overflow-hidden p-6">
-            <motion.picture>
-                <source media="(min-width: 768px)" srcSet={src1} />
-                  <motion.img
-                    src={src2}
-                    alt={title}
-                    className="w-full h-full object-contain"
-                    initial={{ scale: 1 }}
-                    whileHover={{ scale: 1.05 }}
-                    transition={{ duration: 0.4 }}
-                  />
-            </motion.picture>
-
-
+            <picture>
+              <source media="(min-width: 768px)" srcSet={src1} />
+              <img
+                src={src2}
+                alt={title}
+                className="w-full h-full object-contain"
+              />
+            </picture>
             {/* Colored overlay on hover */}
-            <motion.div
+            <div
               className="absolute inset-0"
               style={{ backgroundColor: color, mixBlendMode: "overlay" }}
-              initial={{ opacity: 0 }}
-              whileHover={{ opacity: 0.3 }}
-              transition={{ duration: 0.3 }}
             />
-
-  
-            
           </div>
 
           {/* Content section - full width on mobile, 55% on desktop */}
@@ -264,9 +208,9 @@ function Card({
                 />
                 <div className="h-[1px] w-12 md:w-20 bg-gray-600" />
                 {/* Project number */}
-                <div className="absolute right-4 bg-gray-700 backdrop-blur-md text-white px-3 py-1 md:px-4 md:py-2 rounded-full text-xs md:text-sm font-medium">
-              Project {i + 1}
-            </div>
+                <div className="ml-auto bg-gray-700 backdrop-blur-md text-white px-3 py-1 md:px-4 md:py-2 rounded-full text-xs md:text-sm font-medium">
+                  Project {i + 1}
+                </div>
               </div>
 
               <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-white mb-2 md:mb-4">
@@ -298,13 +242,11 @@ function Card({
 
               <div className="flex items-center gap-4">
                 {/* GitHub Link */}
-                <motion.a
+                <a
                   href={githubLink || undefined}
                   target="_blank"
                   rel="noopener noreferrer"
                   className={`group flex items-center gap-2 ${!githubLink ? 'pointer-events-none opacity-50' : ''}`}
-                  whileHover={githubLink ? { y: -3 } : {}}
-                  transition={{ type: "spring", stiffness: 400 }}
                   tabIndex={!githubLink ? -1 : 0}
                   aria-disabled={!githubLink}
                 >
@@ -327,16 +269,14 @@ function Card({
                   >
                     Code
                   </span>
-                </motion.a>
+                </a>
 
                 {/* Live Link */}
-                <motion.a
+                <a
                   href={liveLink || undefined}
                   target="_blank"
                   rel="noopener noreferrer"
                   className={`group flex items-center gap-2 ${!liveLink ? 'pointer-events-none opacity-50' : ''}`}
-                  whileHover={liveLink ? { y: -3 } : {}}
-                  transition={{ type: "spring", stiffness: 400 }}
                   tabIndex={!liveLink ? -1 : 0}
                   aria-disabled={!liveLink}
                 >
@@ -361,13 +301,13 @@ function Card({
                   >
                     Live
                   </span>
-                </motion.a>
+                </a>
               </div>
             </div>
           </div>
         </div>
-      </motion.div>
-    </div>
+      </div>
+    </motion.div>
   );
 }
 
@@ -377,9 +317,6 @@ Card.propTypes = {
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   color: PropTypes.string.isRequired,
-  progress: PropTypes.object.isRequired,
-  range: PropTypes.array.isRequired,
-  targetScale: PropTypes.number.isRequired,
   githubLink: PropTypes.string.isRequired,
   liveLink: PropTypes.string.isRequired,
   tags: PropTypes.array,
