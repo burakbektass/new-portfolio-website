@@ -7,7 +7,7 @@ export default function About() {
       <section id="about" className="py-16 md:py-32  text-white bg-[#04081A]">
         <div className="mx-auto max-w-5xl space-y-8 px-6 md:space-y-16">
           <h2 className="text-3xl font-bold text-center mb-8 gradient-text">
-            From Code to Coffee: My Journey in Tech 🚀
+            Crafting Digital Experiences: Where Code Meets Creativity ✨
           </h2>
           <div className="grid gap-6 sm:grid-cols-2 md:gap-12 lg:gap-24">
             <div className="relative mb-6 sm:mb-0">
@@ -24,29 +24,20 @@ export default function About() {
 
             <div className="relative space-y-4 text-justify">
               <p className="text-white">
-              Hi! I'm Burak Bektaş. A few years into my career as a lawyer, I found myself drawn more and more to technology. What started as curiosity became a new direction—I used my transferable skills to earn
-                <span className="font-bold text-white"> {" "}
-                Google Project Management
-                </span>{" "} and 
-                <span className="font-bold text-white"> {" "}
-                Professional Scrum Master (PSM)
-                </span> {" "}
-                which grounded me in structured thinking and agile collaboration.{" "}
+                Hi! I'm Burak Bektaş, a Software Engineering graduate from Bahçeşehir University with a deep passion for frontend development. With a solid academic background (GPA: 3.40/4.00), I focus on creating beautiful and performant web applications that deliver exceptional user experiences.
               </p>
               <p className="text-white">
-              Driven by a love for the technical side, I joined a hands-on full stack development program focused on .NET and Angular. It boosted my coding skills and confirmed I was right where I belonged. After graduating, I added React and Python to my stack and kept diving deeper into software development.
+                I specialize in modern frontend development, working extensively with React, Next.js, and TypeScript. My approach combines clean code practices with cutting-edge technologies, always pushing the boundaries of what's possible in web development. I'm particularly passionate about exploring new frontend frameworks and staying ahead of the curve in web development trends.
               </p>
               <p className="text-white">
-              You can check out some of my work in the Projects section. I'm always building something new—lately, an AWS-based project as I explore cloud technologies. Fun fact: this very website is one result of that journey.
+                In the Projects section, you'll find examples of my work showcasing interactive web applications and modern designs. Each project represents my commitment to learning and implementing the latest frontend technologies, including this portfolio website itself.
               </p>
 
               <div className="pt-6">
                 <blockquote className="border-l-4 border-gray-300 pl-4">
                   <p className="text-white">
-                  I'm a lifelong learner who gets excited by new challenges and real impact. I care deeply about building things that matter, growing with my community, and always staying curious — because that's where the magic happens.
+                    I thrive on challenges and am constantly exploring new frontend technologies. My goal is to create web applications that not only look stunning but also provide seamless user experiences, while maintaining clean, maintainable code and following industry best practices.
                   </p>
-
-                  
                 </blockquote>
               </div>
             </div>

@@ -7,41 +7,41 @@ const projects = [
     title: "BudgetFlow - Personal Finance Tracker",
     description:
       "Comprehensive personal finance application built with Next.js 14, featuring multi-currency support, interactive data visualization, and category-based budgeting. Includes dark/light theme, multi-language support (EN/TR), and responsive design for optimal user experience.",
-    src1: "", // You will add the image later
-    src2: "", // You will add the image later
+    src1: "/src/assets/images/expense-tracker.png",
+    src2: "/src/assets/images/expense-tracker.png",
     color: "#4f46e5", // Soft Indigo
     githubLink: "https://github.com/burakbektass/expense-tracker",
     liveLink: "https://expense-tracker-phi-amber.vercel.app/dashboard",
     tags: ["Next.js 14", "TypeScript", "TailwindCSS", "Recharts", "Context API"],
   },
   {
-    title: "Clickable Covid-19-statistic Map",
-    description:
-      "Interactive world map visualization showcasing real-time COVID-19 statistics with detailed country-specific data, built with modern web technologies for optimal performance and user experience.",
-    src1: "", // You will add the image later
-    src2: "", // You will add the image later
-    color: "#be185d", // Deep Rose
-    githubLink: "https://github.com/burakbektass/covid-19-statistic",
-    liveLink: "https://covid-19-statistic-aofrrq47g-burakbektass-projects.vercel.app/",
-    tags: ["React", "TypeScript", "REST API"],
-  },
-  {
     title: "Modern Weather App",
     description:
       "A sleek and responsive weather application featuring real-time weather data, hourly forecasts, and dynamic UI that adapts to current weather conditions. Built with Next.js 14 and includes features like temperature unit conversion, wind speed units, and smart error handling.",
-    src1: "", // You will add the image later
-    src2: "", // You will add the image later
+    src1: "/src/assets/images/weather-app.png",
+    src2: "/src/assets/images/weather-app.png",
     color: "#0369a1", // Deep Sky Blue
     githubLink: "https://github.com/burakbektass/weather-app",
     liveLink: "https://weather-app-murex-omega-71.vercel.app/",
     tags: ["Next.js 14", "TypeScript", "Redux Toolkit", "TanStack Query", "Tailwind CSS"],
   },
   {
+    title: "Clickable Covid-19-statistic Map",
+    description:
+      "Interactive world map visualization showcasing real-time COVID-19 statistics with detailed country-specific data, built with modern web technologies for optimal performance and user experience.",
+    src1: "/src/assets/images/covid19-map.png",
+    src2: "/src/assets/images/covid19-map.png",
+    color: "#be185d", // Deep Rose
+    githubLink: "https://github.com/burakbektass/covid-19-statistic",
+    liveLink: "https://covid-19-statistic-aofrrq47g-burakbektass-projects.vercel.app/",
+    tags: ["React", "TypeScript", "REST API"],
+  },
+  {
     title: "PawTime – Veterinary Appointment System",
     description:
       "Modern veterinary appointment scheduling system built with React and Tailwind CSS, featuring responsive design, easy appointment booking, and medical history tracking. A user-friendly interface for pet owners to manage their veterinary visits.",
-    src1: "", // You will add the image later
-    src2: "", // You will add the image later
+    src1: "/src/assets/images/pawtime.png",
+    src2: "/src/assets/images/pawtime.png",
     color: "#6d28d9", // Deep Purple
     githubLink: "https://github.com/burakbektass/PawTime",
     liveLink: "https://paw-time.vercel.app/",
@@ -51,8 +51,8 @@ const projects = [
     title: "React Budget App",
     description:
       "Personal finance tracker with expense categorization, budget planning, and visual spending analytics, built using React Router for seamless navigation.",
-    src1: "", // You will add the image later
-    src2: "", // You will add the image later
+    src1: "/src/assets/images/budget-app.png",
+    src2: "/src/assets/images/budget-app.png",
     color: "#047857", // Deep Emerald
     githubLink: "https://github.com/burakbektass/Budget-application-with-React",
     liveLink: "https://budget-application-with-react.vercel.app/",
@@ -62,8 +62,8 @@ const projects = [
     title: "Three-card Monte game with VueJs",
     description:
       "Interactive card game built with Vue.js, featuring smooth animations, score tracking, and multiple difficulty levels. A modern take on the classic Three-card Monte game.",
-    src1: "", // You will add the image later
-    src2: "", // You will add the image later
+    src1: "/src/assets/images/3card-game.jpg",
+    src2: "/src/assets/images/3card-game.jpg",
     color: "#b45309", // Deep Amber
     githubLink: "https://github.com/burakbektass/poker",
     liveLink: "https://poker-three-psi.vercel.app/",
@@ -73,8 +73,8 @@ const projects = [
     title: "React Movie App",
     description:
       "Feature-rich movie discovery platform integrating with TMDB API, offering advanced search, filtering, and personalized watchlists with responsive design and TypeScript type safety.",
-    src1: "", // You will add the image later
-    src2: "", // You will add the image later
+    src1: "/src/assets/images/react-movie.jpg",
+    src2: "/src/assets/images/react-movie.jpg",
     color: "#b91c1c", // Deep Red
     githubLink: "https://github.com/burakbektass/Movie-react-app",
     liveLink: "", // Add your live link if available
@@ -84,8 +84,8 @@ const projects = [
     title: "Company Valuation Template",
     description:
       "Comprehensive financial analysis tool that calculates company valuations using multiple methods including DCF, Residual Income, and Enterprise Value, featuring interactive charts and detailed reporting.",
-    src1: "", // You will add the image later
-    src2: "", // You will add the image later
+    src1: "/src/assets/images/company-valuation-project.jpg",
+    src2: "/src/assets/images/company-valuation-project.jpg",
     color: "#0e7490", // Deep Cyan
     githubLink: "https://github.com/burakbektass/Company-Valuation-Template-Project",
     liveLink: "", // Add your live link if available
@@ -95,8 +95,8 @@ const projects = [
     title: "Diabetes Prediction",
     description:
       "Machine learning application that predicts diabetes risk using demographic and health metrics, achieving 85% accuracy through advanced data analysis and feature engineering techniques.",
-    src1: "", // You will add the image later
-    src2: "", // You will add the image later
+    src1: "/src/assets/images/diabetes-project.jpeg",
+    src2: "/src/assets/images/diabetes-project.jpeg",
     color: "#0f766e", // Deep Teal
     githubLink: "https://github.com/burakbektass/Diabetes-Prediction-Data-Science-Project-Project",
     liveLink: "", // No live link
@@ -236,20 +236,15 @@ function Card({
         {/* Modern split card design */}
         <div className="w-full flex flex-col md:flex-row bg-zinc-900 rounded-2xl overflow-hidden shadow-2xl border border-blue-950 border-2">
           {/* Image section - full width on mobile, 45% on desktop */}
-          <div className="w-full md:w-[45%] h-[250px] md:h-[400px] lg:h-[500px] relative overflow-hidden p-6">
+          <div className="w-full md:w-[50%] h-[300px] md:h-[450px] lg:h-[550px] relative overflow-hidden p-6 rounded-[3rem]">
             <picture>
               <source media="(min-width: 768px)" srcSet={src1} />
               <img
                 src={src2}
                 alt={title}
-                className="w-full h-full object-contain"
+                className="w-full h-full object-contain rounded-[2.5rem]"
               />
             </picture>
-            {/* Colored overlay on hover */}
-            <div
-              className="absolute inset-0"
-              style={{ backgroundColor: color, mixBlendMode: "overlay" }}
-            />
           </div>
 
           {/* Content section - full width on mobile, 55% on desktop */}
@@ -261,10 +256,10 @@ function Card({
                   style={{ backgroundColor: color }}
                 />
                 <div className="h-[1px] w-12 md:w-20 bg-gray-600" />
-                {/* Project number */}
+                {/* Project number
                 <div className="ml-auto bg-gray-700 backdrop-blur-md text-white px-3 py-1 md:px-4 md:py-2 rounded-full text-xs md:text-sm font-medium">
                   Project {i + 1}
-                </div>
+                </div> */}
               </div>
 
               <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-white mb-2 md:mb-4">
