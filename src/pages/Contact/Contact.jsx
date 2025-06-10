@@ -1,7 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Send, Phone, MapPin, Mail } from "lucide-react";
+import emailjs from '@emailjs/browser';
+import { EMAILJS_CONFIG } from '../../config/emailjs.config';
 
 export default function Contact() {
+  const form = useRef();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -11,6 +14,39 @@ export default function Contact() {
 
   const [errors, setErrors] = useState({});
   const [status, setStatus] = useState(null);
+  const [showStatus, setShowStatus] = useState(false);
+
+  useEffect(() => {
+    const requiredVars = [
+      'SERVICE_ID',
+      'TEMPLATE_ID',
+      'AUTO_REPLY_TEMPLATE_ID',
+      'PUBLIC_KEY'
+    ];
+
+    const missingVars = requiredVars.filter(
+      (key) => !EMAILJS_CONFIG[key]
+    );
+
+    if (missingVars.length > 0) {
+      console.error('Missing EmailJS configuration:', missingVars);
+      setStatus('Contact form is not properly configured. Please contact the administrator.');
+    }
+  }, []);
+
+  useEffect(() => {
+    let timeout;
+    if (status) {
+      setShowStatus(true);
+      timeout = setTimeout(() => {
+        setShowStatus(false);
+        setTimeout(() => {
+          setStatus(null);
+        }, 300); 
+      }, 3000);
+    }
+    return () => clearTimeout(timeout);
+  }, [status]);
 
   const validateForm = () => {
     let tempErrors = {};
@@ -51,24 +87,27 @@ export default function Contact() {
       return;
     }
 
-    // Create a new FormData object to send to Web3Forms API
-    const form = new FormData();
-    form.append("access_key", "1194feca-8aee-40aa-bd85-4b87c65fe366"); // Replace with your Web3Forms access key
-    form.append("name", formData.name);
-    form.append("email", formData.email);
-    form.append("subject", formData.subject || "New Contact Form Submission");
-    form.append("message", formData.message);
-
     try {
-      // Send form data to Web3Forms API
-      const response = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        body: form,
-      });
+      const result = await emailjs.sendForm(
+        EMAILJS_CONFIG.SERVICE_ID,
+        EMAILJS_CONFIG.TEMPLATE_ID,
+        form.current,
+        EMAILJS_CONFIG.PUBLIC_KEY
+      );
 
-      const result = await response.json();
+      if (result.text === 'OK') {
+        // Send auto-reply to the user
+        try {
+          await emailjs.sendForm(
+            EMAILJS_CONFIG.SERVICE_ID,
+            EMAILJS_CONFIG.AUTO_REPLY_TEMPLATE_ID,
+            form.current,
+            EMAILJS_CONFIG.PUBLIC_KEY
+          );
+        } catch (autoReplyError) {
+          console.error("Auto-reply error:", autoReplyError);
+        }
 
-      if (response.ok) {
         setStatus("Message sent successfully!");
         setFormData({
           name: "",
@@ -78,7 +117,7 @@ export default function Contact() {
         });
         setErrors({});
       } else {
-        setStatus(result.message || "There was an error sending your message.");
+        setStatus("Failed to send message. Please try again.");
       }
     } catch (error) {
       setStatus("An error occurred. Please try again.");
@@ -108,10 +147,9 @@ export default function Contact() {
               <div className="space-y-6">
                 <div className="flex items-center space-x-4">
                   <div className="bg-purple-500/10 p-3 rounded-lg">
-                    
                     <a href="mailto:burak.bektas.work@gmail.com">
-                    <Mail className="w-6 h-6 text-purple-400" />
-                      </a>
+                      <Mail className="w-6 h-6 text-purple-400" />
+                    </a>
                   </div>
                   <div>
                     <h3 className="font-semibold">Email</h3>
@@ -133,11 +171,12 @@ export default function Contact() {
 
             {/* Contact Form */}
             <div className="backdrop-blur-lg bg-white/5 p-8 rounded-2xl shadow-xl">
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form ref={form} onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 gap-6">
                   <div>
                     <input
                       type="text"
+                      name="name"
                       placeholder="Your Name"
                       className={`w-full px-4 py-3 rounded-lg bg-white/5 border ${
                         errors.name ? "border-red-500" : "border-gray-700"
@@ -155,6 +194,7 @@ export default function Contact() {
                   <div>
                     <input
                       type="email"
+                      name="email"
                       placeholder="Your Email"
                       className={`w-full px-4 py-3 rounded-lg bg-white/5 border ${
                         errors.email ? "border-red-500" : "border-gray-700"
@@ -174,6 +214,7 @@ export default function Contact() {
                   <div>
                     <input
                       type="text"
+                      name="subject"
                       placeholder="Subject"
                       className={`w-full px-4 py-3 rounded-lg bg-white/5 border ${
                         errors.subject ? "border-red-500" : "border-gray-700"
@@ -192,6 +233,7 @@ export default function Contact() {
 
                   <div>
                     <textarea
+                      name="message"
                       placeholder="Your Message"
                       rows="4"
                       className={`w-full px-4 py-3 rounded-lg bg-white/5 border ${
@@ -222,7 +264,9 @@ export default function Contact() {
               {/* Status Message */}
               {status && (
                 <div
-                  className={`mt-4 text-center ${
+                  className={`mt-4 text-center transition-opacity duration-300 ${
+                    showStatus ? 'opacity-100' : 'opacity-0'
+                  } ${
                     status.includes("success")
                       ? "text-green-400"
                       : "text-red-400"
